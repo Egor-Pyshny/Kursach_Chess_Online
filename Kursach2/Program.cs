@@ -63,6 +63,7 @@ namespace Kursach2
             Text text = new Text();
             text.Font = new Font("tmr.ttf");
             window = new RenderWindow(new VideoMode(1200, 1000), "Chess", Styles.Titlebar | Styles.Close);
+            InitVars();
             FillFigArr();
             if (online)
             {
@@ -74,9 +75,6 @@ namespace Kursach2
                 {
                     client.set_user_ip((byte)usernum);
                 }
-            }
-            else {
-                InitVars();
             }
             window.Closed += _Close;
             window.MouseButtonPressed += pressed;
@@ -144,7 +142,11 @@ namespace Kursach2
             };
             f = new Figure();
             SelectedFigure = null;
-            player = true;
+            if (!online)
+            {
+                player = true;
+                online = false;
+            }
             current_player = true;
             checktoWhite = false;
             checktoBlack = false;
@@ -154,8 +156,7 @@ namespace Kursach2
             whiterotateRF = true;
             blackrotateLF = true;
             blackrotateRF = true;
-            switching = false;
-            online = false;
+            switching = false;          
             switchcolor = -1;
             switchind = -1;
             switchedfig = null;
