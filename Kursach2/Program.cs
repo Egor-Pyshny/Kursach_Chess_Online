@@ -59,8 +59,7 @@ namespace Kursach2
         private static byte[] data = new byte[0];
         public static void Main(RenderWindow parentWindow)
         {
-            parentWindow.SetVisible(false);
-            InitVars();
+            parentWindow.SetVisible(false);           
             Text text = new Text();
             text.Font = new Font("tmr.ttf");
             window = new RenderWindow(new VideoMode(1200, 1000), "Chess", Styles.Titlebar | Styles.Close);
@@ -75,6 +74,9 @@ namespace Kursach2
                 {
                     client.set_user_ip((byte)usernum);
                 }
+            }
+            else {
+                InitVars();
             }
             window.Closed += _Close;
             window.MouseButtonPressed += pressed;
@@ -292,12 +294,15 @@ namespace Kursach2
 
         private static void moved(object sender, MouseMoveEventArgs e)
         {
-
-            if (new IntRect(50, 100, 800, 800).Contains(e.X, e.Y))
+            if (player == current_player)
             {
-                curentbrik = ((e.Y - 100) / 100) * 8 + (e.X - 50) / 100;
+                if (new IntRect(50, 100, 800, 800).Contains(e.X, e.Y))
+                {
+                    curentbrik = ((e.Y - 100) / 100) * 8 + (e.X - 50) / 100;
+                }
             }
-            else {
+            else
+            {
                 curentbrik = -1;
             }
         }
@@ -725,36 +730,40 @@ namespace Kursach2
 
         private static void pressed(object sender, MouseButtonEventArgs e)
         {
-            if (new IntRect(50, 100, 800, 800).Contains(e.X, e.Y))
+            if (player == current_player)
             {
-                pressedbrik = ((e.Y - 100) / 100) * 8 + (e.X - 50) / 100;
-                if (player)
+                if (new IntRect(50, 100, 800, 800).Contains(e.X, e.Y))
                 {
-                    if (whitefig.Contains(f[pressedbrik].ftype))
+                    pressedbrik = ((e.Y - 100) / 100) * 8 + (e.X - 50) / 100;
+                    if (player)
                     {
-                        PrevSelectedFigure = SelectedFigure;
-                        SelectedFigure = f[pressedbrik];
+                        if (whitefig.Contains(f[pressedbrik].ftype))
+                        {
+                            PrevSelectedFigure = SelectedFigure;
+                            SelectedFigure = f[pressedbrik];
+                        }
+                        else
+                        {
+                            PrevSelectedFigure = SelectedFigure;
+                            SelectedFigure = f[pressedbrik];
+                            pressedbrik = -1;
+                        }
                     }
                     else
                     {
-                        PrevSelectedFigure = SelectedFigure;
-                        SelectedFigure = f[pressedbrik];
-                        pressedbrik = -1;
+                        if (blackfig.Contains(f[pressedbrik].ftype))
+                        {
+                            PrevSelectedFigure = SelectedFigure;
+                            SelectedFigure = f[pressedbrik];
+                        }
+                        else
+                        {
+                            PrevSelectedFigure = SelectedFigure;
+                            SelectedFigure = f[pressedbrik];
+                            pressedbrik = -1;
+                        }
                     }
                 }
-                else {
-                    if (blackfig.Contains(f[pressedbrik].ftype))
-                    {
-                        PrevSelectedFigure = SelectedFigure;
-                        SelectedFigure = f[pressedbrik];
-                    }
-                    else
-                    {
-                        PrevSelectedFigure = SelectedFigure;
-                        SelectedFigure = f[pressedbrik];
-                        pressedbrik = -1;
-                    }
-                }             
             }
             else
             {
