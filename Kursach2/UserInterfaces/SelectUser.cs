@@ -78,7 +78,7 @@ namespace Kursach2.UserInterfaces
                 if (data.Length!=0 && data[0]==255) {
                     selected = data[1];
                     color = 0;
-                    byte[] msg = new byte[2] { 255, Program.client.user_ip() };
+                    byte[] msg = new byte[2] { 255, (byte)selected };
                     tcpClient.GetStream().Write(msg, 0, msg.Length);
                     
                 }
