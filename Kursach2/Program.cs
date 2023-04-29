@@ -197,7 +197,14 @@ namespace Kursach2
                 text.DisplayedString = str.Append("White").ToString();
             else
                 text.DisplayedString = str.Append("Black").ToString();
-            window.Draw(text);           
+            window.Draw(text);
+            if (online) {
+                string temp;
+                if (player) { temp = "White"; } else { temp = "Black"; }
+                text.DisplayedString = "You are playing for" + temp;
+                text.Position = new Vector2f(870, 525);
+                window.Draw(text);
+            }
         }
 
         private static async void ReadStream()
@@ -284,7 +291,7 @@ namespace Kursach2
                 f.whitedeletedfigure.Add(factory.Produce((int)data[j],1,-200,-200));
                 j++;
             }
-            if(tmp>0)
+            if(tmp==0)
                 j++;
             tmp = data[j];
             j++;
