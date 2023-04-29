@@ -277,6 +277,8 @@ namespace Kursach2
             byte tmp = data[j];
             j++;
             MainFactory factory = new MainFactory();
+            f.whitedeletedfigure.Clear();
+            f.blackdeletedfigure.Clear();
             for (int i = 0; i < tmp; i++)
             {
                 f.whitedeletedfigure.Add(factory.Produce((int)data[j],1,-200,-200));
