@@ -77,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Client\Client.cs" />
+    <Compile Include="DialogWindows\CheckWindow.cs" />
+    <Compile Include="DialogWindows\WinWindow.cs" />
     <Compile Include="Figures\BlackBishop.cs" />
     <Compile Include="Figures\BlackHorse.cs" />
     <Compile Include="Figures\BlackKing.cs" />

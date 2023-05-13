@@ -12,6 +12,7 @@ using Kursach2.Client;
 using Kursach2.MainMenu;
 using System.Net.Sockets;
 using Kursach2.UserInterfaces;
+using Kursach2.DialogWindows;
 
 namespace Kursach2
 {
@@ -104,7 +105,7 @@ namespace Kursach2
                         Array.Clear(data, 0, data.Length);
                     }
                 }
-                
+                CheckFlags();
                 /*if (tcpClient.GetStream().CanRead)
                     data = new byte[4096];
                     count = tcpClient.GetStream().Read(data, 0, data.Length);*/                
@@ -126,6 +127,28 @@ namespace Kursach2
                 window.Display();
             }
             parentWindow.SetVisible(true);
+        }
+
+        private static void CheckFlags()
+        {
+            if (whitewin)
+            {
+                WinWindow.DrawWinWindow(1);
+                window.Close();
+            }
+            else if (blackwin)
+            {
+                WinWindow.DrawWinWindow(0);
+                window.Close();
+            }
+            else if (checktoWhite)
+            {
+                CheckWindow.DrawCheckWindow(1);
+            }
+            else if (checktoBlack) 
+            {
+                CheckWindow.DrawCheckWindow(0);
+            }
         }
 
         private static void InitVars()
@@ -247,14 +270,13 @@ namespace Kursach2
             for (int i = 0; i < 64; i++) {
                 list.Add(Convert.ToByte(f[i].ftype));
             }
-            int count = f.whitedeletedfigure.Count;
+            int count = f.whitedeletedfigure.Count,count2 = f.blackdeletedfigure.Count;
             list.Add((byte)count);
+            list.Add((byte)count2);
             for (int i = 0; i < count; i++) {
                 list.Add((byte)f.whitedeletedfigure[i].ftype);
             }
-            count = f.blackdeletedfigure.Count;
-            list.Add((byte)count);
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < count2; i++)
             {
                 list.Add((byte)f.blackdeletedfigure[i].ftype);
             }
@@ -283,23 +305,23 @@ namespace Kursach2
             j++;
             byte tmp = data[j];
             j++;
-            MainFactory factory = new MainFactory();
-            f.whitedeletedfigure.Clear();
-            f.blackdeletedfigure.Clear();
-            for (int i = 0; i < tmp; i++)
-            {
-                f.whitedeletedfigure.Add(factory.Produce((int)data[j],1,-200,-200));
-                j++;
-            }
-            if(tmp==0)
-                j++;
-            tmp = data[j];
+            byte tmp2 = data[j];
             j++;
+            MainFactory factory = new MainFactory();
+            List<Figure> Wdeleted = new List<Figure>();
+            List<Figure> Bdeleted = new List<Figure>();
             for (int i = 0; i < tmp; i++)
             {
-                f.blackdeletedfigure.Add(factory.Produce((int)data[j]-6, 0, -200, -200));
+                Wdeleted.Add(factory.Produce((int)data[j],1,-200,-200));
                 j++;
             }
+            f.whitedeletedfigure = Wdeleted;
+            for (int i = 0; i < tmp2; i++)
+            {
+                Bdeleted.Add(factory.Produce((int)data[j], 0, -200, -200));
+                j++;
+            }
+            f.blackdeletedfigure = Bdeleted;
         }
 
         private static void moved(object sender, MouseMoveEventArgs e)
@@ -738,6 +760,8 @@ namespace Kursach2
             f.FigureList = list;
         }
 
+
+        //опробовать добавить подсветку возможных ходов фигур
         private static void pressed(object sender, MouseButtonEventArgs e)
         {
             if (player == current_player)
