@@ -46,10 +46,12 @@ namespace Kursach2.DialogWindows
             {
                 txt.DisplayedString = "Check to black";
             }
-            txt.Position = new Vector2f((window.Size.X - txt.GetLocalBounds().Width) / 2, 0);
+            txt.Scale = new Vector2f(2, 2);
+            txt.Position = new Vector2f((window.Size.X - txt.GetGlobalBounds().Width) / 2, 0);
             window.Draw(txt);
             txt.CharacterSize = 18;
             txt.DisplayedString = "To close this window, click anywhere outside of it.";
+            txt.Scale = new Vector2f(1, 1);
             txt.Position = new Vector2f((window.Size.X - txt.GetLocalBounds().Width) / 2, 45);
             window.Draw(txt);
         }

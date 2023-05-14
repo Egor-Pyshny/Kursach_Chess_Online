@@ -44,11 +44,13 @@ namespace Kursach2.DialogWindows
             {
                txt.DisplayedString="Black win";
             }
-            txt.Position = new Vector2f((window.Size.X - txt.GetLocalBounds().Width) / 2, 0);
+            txt.Scale = new Vector2f(2, 2);
+            txt.Position = new Vector2f((window.Size.X - txt.GetGlobalBounds().Width) / 2, 0);
             window.Draw(txt);
             txt.CharacterSize =18;
             txt.DisplayedString = "To close this window, click anywhere outside of it.";
             txt.Position = new Vector2f((window.Size.X - txt.GetLocalBounds().Width) / 2, 45);
+            txt.Scale = new Vector2f(1, 1);
             window.Draw(txt);
         }
 

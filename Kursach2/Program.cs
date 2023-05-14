@@ -110,7 +110,6 @@ namespace Kursach2
                     data = new byte[4096];
                     count = tcpClient.GetStream().Read(data, 0, data.Length);*/                
                 DrawField(window);
-                DrawFigure(window);
                 DrawDownedFigure(window);
                 if (!switching)
                 {
@@ -124,6 +123,7 @@ namespace Kursach2
                         }
                     }
                 }
+                DrawFigure(window);
                 CheckSwitch();
                 window.Display();
             }
@@ -163,7 +163,7 @@ namespace Kursach2
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
-                6,6,6,6,6,6,6,6,
+                12,6,6,6,6,6,6,6,
                 1,2,3,4,5,3,2,1,
             };
             f = new Figure();
@@ -212,6 +212,13 @@ namespace Kursach2
                 switchcolor = -1;
                 switchedfig = null;
                 send_data = true;
+                if (UnderAttack(true, f.FigureList)) {
+                    checktoWhite = true;
+                }
+                if (UnderAttack(false, f.FigureList))
+                {
+                    checktoBlack = true;
+                }
             }
         }
 
