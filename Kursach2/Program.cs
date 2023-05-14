@@ -229,7 +229,7 @@ namespace Kursach2
             if (online) {
                 string temp;
                 if (player) { temp = "White"; } else { temp = "Black"; }
-                text.DisplayedString = "You are playing for" + temp;
+                text.DisplayedString = "You are playing for " + temp;
                 text.Position = new Vector2f(870, 525);
                 window.Draw(text);
             }
