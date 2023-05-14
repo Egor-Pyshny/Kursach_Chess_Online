@@ -135,12 +135,12 @@ namespace Kursach2
             if (whitewin)
             {
                 WinWindow.DrawWinWindow(1, window);
-                window.Close();
+                _Close(window,null);
             }
             else if (blackwin)
             {
                 WinWindow.DrawWinWindow(0, window);
-                window.Close();
+                _Close(window, null);
             }
             else if (checktoWhite)
             {
