@@ -33,6 +33,8 @@ namespace Kursach2.UserInterfaces
             selection.MouseButtonPressed += pressed;
             LIST();
             ipAdresses = ParseIP(data);
+            NetworkStream stream = user.GetStream();
+            stream.Write(new byte[1] { 5 }, 0, 1);
             while (selection.IsOpen)
             {
                 selection.Clear(Color.White);
@@ -161,6 +163,8 @@ namespace Kursach2.UserInterfaces
 
         private void _Close(object sender, EventArgs e)
         {
+            NetworkStream stream = user.GetStream();
+            stream.Write(new byte[1] { 4 }, 0, 1);
             selection.Close();
         }
     }
