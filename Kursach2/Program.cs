@@ -83,7 +83,7 @@ namespace Kursach2
             window.MouseButtonPressed += pressed;
             window.MouseMoved += moved;
             while (window.IsOpen) {
-                Console.WriteLine(player.ToString());
+                CheckFlags();
                 window.DispatchEvents();
                 window.Clear(Color.White);
                 DrawPlayers(text);
@@ -125,7 +125,6 @@ namespace Kursach2
                     }
                 }
                 CheckSwitch();
-                CheckFlags();
                 window.Display();
             }
             parentWindow.SetVisible(true);
