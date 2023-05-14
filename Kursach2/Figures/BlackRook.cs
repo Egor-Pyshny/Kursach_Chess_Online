@@ -49,7 +49,7 @@ namespace Kursach2.Figures
             int i = ind + tmp;
             while (Math.Abs(i) != newInd && i >= 0 && i <= 63)
             {
-                path.Add(ind);
+                path.Add(i);
                 i += tmp;
             }
             return path.ToArray();

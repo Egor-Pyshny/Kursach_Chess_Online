@@ -683,7 +683,7 @@ namespace Kursach2
                 if (!res)
                     return res;
             }
-            return false;
+            return true;
         }
 
         private static void DrawFigure(RenderWindow w) {

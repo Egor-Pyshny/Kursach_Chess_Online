@@ -52,7 +52,7 @@ namespace Kursach2.Figures
 			{
 				while (Math.Abs(i3) != ind2 && i3 >= 0 && i3 <= 63)
 				{
-					path.Add(ind);
+					path.Add(i3);
 					i3 += tmp1;
 				}
 			}
@@ -74,7 +74,7 @@ namespace Kursach2.Figures
 					int i = ind + tmp;
 					while (i > ind2 && i >= 0 && i <= 63)
 					{
-						path.Add(ind);
+						path.Add(i);
 						i = i + tmp;
 					}
 				}
@@ -87,7 +87,7 @@ namespace Kursach2.Figures
 					int i = ind + tmp;
 					while (i < ind2 && i >= 0 && i <= 63)
 					{
-						path.Add(ind);
+						path.Add(i);
 						i = i + tmp;
 					}
 				}
