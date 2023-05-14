@@ -107,7 +107,6 @@ namespace Kursach2
                         Array.Clear(data, 0, data.Length);
                     }
                 }
-                CheckFlags();
                 /*if (tcpClient.GetStream().CanRead)
                     data = new byte[4096];
                     count = tcpClient.GetStream().Read(data, 0, data.Length);*/                
@@ -126,6 +125,7 @@ namespace Kursach2
                     }
                 }
                 CheckSwitch();
+                CheckFlags();
                 window.Display();
             }
             parentWindow.SetVisible(true);
