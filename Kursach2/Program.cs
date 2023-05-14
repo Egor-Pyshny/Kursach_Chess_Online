@@ -32,11 +32,10 @@ namespace Kursach2
         private static Figure SelectedFigure = null;
         private static Figure PrevSelectedFigure;
         public static bool player=true;
+        private static bool send_data=false;
         public static bool current_player=true;
         private static bool checktoWhite = false;
         private static bool checktoBlack = false;
-        private static bool showcheckwindow_b;
-        private static bool showcheckwindow_w;
         private static bool whitewin = false;
         private static bool blackwin = false;
         private static bool whiterotateLF = true;
@@ -115,10 +114,11 @@ namespace Kursach2
                 DrawDownedFigure(window);
                 if (!switching)
                 {
-                    if (CheckMove())
+                    if (CheckMove() || send_data)
                     {
                         if (online && !switching)
                         {
+                            send_data = false;
                             SendRequest(CreateRequest());
                             current_player = !current_player;
                         }
@@ -142,16 +142,14 @@ namespace Kursach2
                 WinWindow.DrawWinWindow(0, window);
                 window.Close();
             }
-            else if (checktoWhite && showcheckwindow_w)
+            else if (checktoWhite)
             {
                 CheckWindow.DrawCheckWindow(1,window);
                 checktoWhite = false;
-                showcheckwindow_w = false;
             }
-            else if (checktoBlack && showcheckwindow_b) 
+            else if (checktoBlack) 
             {
                 CheckWindow.DrawCheckWindow(0, window);
-                showcheckwindow_b = false;
                 checktoBlack = false;
             }
         }
@@ -175,6 +173,7 @@ namespace Kursach2
                 player = true;
                 online = false;
             }
+            send_data = false;
             current_player = true;
             checktoWhite = false;
             checktoBlack = false;
@@ -212,6 +211,7 @@ namespace Kursach2
                 switching = false;
                 switchcolor = -1;
                 switchedfig = null;
+                send_data = true;
             }
         }
 
@@ -301,8 +301,6 @@ namespace Kursach2
             whiterotateRF = Convert.ToBoolean(data[8]);
             blackrotateLF = Convert.ToBoolean(data[9]);
             blackrotateRF = Convert.ToBoolean(data[10]);
-            if (checktoBlack) { showcheckwindow_b = true; }
-            if (checktoWhite) { showcheckwindow_w = true; }
             int j = 10;
             for (int i = 0; i < 64; i++)
             {
@@ -422,7 +420,6 @@ namespace Kursach2
                             }                          
                             if (UnderAttack(!player, list)) {
                                 checktoBlack = true;
-                                showcheckwindow_b = true;
                                 Console.WriteLine("CheckBlack");
                                 whitewin = IsWin(player, list);
                                 if (whitewin) {
@@ -523,7 +520,6 @@ namespace Kursach2
                             if (UnderAttack(!player, list))
                             {
                                 checktoWhite = true;
-                                showcheckwindow_w = true;
                                 Console.WriteLine("CheckWhite");
                                 blackwin = IsWin(player, list);
                                 if (blackwin)
