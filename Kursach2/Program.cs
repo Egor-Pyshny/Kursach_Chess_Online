@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using SFML.Window;
 using SFML.Graphics;
 using SFML.System;
 using Kursach2.Figures;
 using Kursach2.Figures.Factory;
 using Kursach2.Client;
-using Kursach2.MainMenu;
 using System.Net.Sockets;
-using Kursach2.UserInterfaces;
 using Kursach2.DialogWindows;
 
 namespace Kursach2

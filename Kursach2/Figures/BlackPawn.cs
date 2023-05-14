@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using SFML.Graphics;
-using SFML.System;
 
 namespace Kursach2.Figures
 {
@@ -21,10 +18,7 @@ namespace Kursach2.Figures
 			this.smallspr = new Sprite(smalltex);
 		}
 
-        public override Sprite getspr()
-        {
-            return spr;
-        }
+        public override Sprite getspr(){return spr;}
 		public override Sprite getsmallspr()
 		{
 			return smallspr;
