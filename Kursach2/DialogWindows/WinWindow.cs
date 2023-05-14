@@ -14,11 +14,14 @@ namespace Kursach2.DialogWindows
         private static RenderWindow window;
         private static int color;
         private static Text txt;
-        public static void DrawWinWindow(int win_color) {
+        public static void DrawWinWindow(int win_color, RenderWindow renderWindow) {
             color = win_color;
-            txt.CharacterSize=35;
+            txt = txt = new Text();
+            txt.CharacterSize = 32;
+            txt.Font = new Font("tmr.ttf");
             txt.Color=Color.Black;
-            window = new RenderWindow(new VideoMode(400, 250), "", Styles.Titlebar);
+            window = new RenderWindow(new VideoMode(400, 100), "", Styles.Titlebar);
+            window.Position = new Vector2i(renderWindow.Position.X + 400, renderWindow.Position.Y + 450);
             window.Closed += close;
             window.RequestFocus();
             window.LostFocus += close;

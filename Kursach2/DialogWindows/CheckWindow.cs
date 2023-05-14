@@ -14,13 +14,16 @@ namespace Kursach2.DialogWindows
         private static RenderWindow window;
         private static int color;
         private static Text txt;
-        public static void DrawCheckWindow(int check_color)
+        public static void DrawCheckWindow(int check_color,RenderWindow renderWindow)
         {
             //check_color - цвет которому шах
+            txt = txt = new Text();
             color = check_color;
-            txt.CharacterSize = 35;
+            txt.CharacterSize = 32;
+            txt.Font = new Font("tmr.ttf");
             txt.Color = Color.Black;
-            window = new RenderWindow(new VideoMode(400, 250), "", Styles.Titlebar);
+            window = new RenderWindow(new VideoMode(400, 100), "", Styles.Titlebar);
+            window.Position = new Vector2i(renderWindow.Position.X + 400, renderWindow.Position.Y + 450);
             window.Closed += close;
             window.RequestFocus();
             window.LostFocus += close;

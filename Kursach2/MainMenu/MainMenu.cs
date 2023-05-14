@@ -87,7 +87,7 @@ namespace Kursach2.MainMenu
         {
             RectangleShape btn = new RectangleShape(new Vector2f(200, 100));
             btn.FillColor = new Color(0, 0, 0, 190);
-            float x = 575, y = 190,step=120;
+            float x = 527, y = 190,step=120;
             Dictionary<int, string> dict = new Dictionary<int, string>() {
                 {0,"Start Game"},
                 {1,"Online Game"},

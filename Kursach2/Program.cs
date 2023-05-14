@@ -35,6 +35,8 @@ namespace Kursach2
         public static bool current_player=true;
         private static bool checktoWhite = false;
         private static bool checktoBlack = false;
+        private static bool showcheckwindow_b;
+        private static bool showcheckwindow_w;
         private static bool whitewin = false;
         private static bool blackwin = false;
         private static bool whiterotateLF = true;
@@ -133,21 +135,23 @@ namespace Kursach2
         {
             if (whitewin)
             {
-                WinWindow.DrawWinWindow(1);
+                WinWindow.DrawWinWindow(1, window);
                 window.Close();
             }
             else if (blackwin)
             {
-                WinWindow.DrawWinWindow(0);
+                WinWindow.DrawWinWindow(0, window);
                 window.Close();
             }
-            else if (checktoWhite)
+            else if (checktoWhite && showcheckwindow_w)
             {
-                CheckWindow.DrawCheckWindow(1);
+                CheckWindow.DrawCheckWindow(1,window);
+                showcheckwindow_w = false;
             }
-            else if (checktoBlack) 
+            else if (checktoBlack && showcheckwindow_b) 
             {
-                CheckWindow.DrawCheckWindow(0);
+                CheckWindow.DrawCheckWindow(0, window);
+                showcheckwindow_b = false;
             }
         }
 
@@ -415,6 +419,7 @@ namespace Kursach2
                             }                          
                             if (UnderAttack(!player, list)) {
                                 checktoBlack = true;
+                                showcheckwindow_b = true;
                                 Console.WriteLine("CheckBlack");
                                 whitewin = IsWin(player, list);
                                 if (whitewin) {
@@ -515,6 +520,7 @@ namespace Kursach2
                             if (UnderAttack(!player, list))
                             {
                                 checktoWhite = true;
+                                showcheckwindow_w = true;
                                 Console.WriteLine("CheckWhite");
                                 blackwin = IsWin(player, list);
                                 if (blackwin)
@@ -675,7 +681,7 @@ namespace Kursach2
                         break;
                     }
                 }
-                if (res)
+                if (!res)
                     return res;
             }
             return false;
