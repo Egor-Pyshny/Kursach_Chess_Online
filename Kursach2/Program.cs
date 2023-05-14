@@ -282,7 +282,7 @@ namespace Kursach2
             }
             for (int i = 0; i < count2; i++)
             {
-                list.Add((byte)f.blackdeletedfigure[i].ftype);
+                list.Add((byte)(f.blackdeletedfigure[i].ftype-6));
             }
             byte[] arr = list.ToArray();
             Array.Copy(arr, 0, request, 0, arr.Length);
