@@ -145,12 +145,14 @@ namespace Kursach2
             else if (checktoWhite && showcheckwindow_w)
             {
                 CheckWindow.DrawCheckWindow(1,window);
+                checktoWhite = false;
                 showcheckwindow_w = false;
             }
             else if (checktoBlack && showcheckwindow_b) 
             {
                 CheckWindow.DrawCheckWindow(0, window);
                 showcheckwindow_b = false;
+                checktoBlack = false;
             }
         }
 
