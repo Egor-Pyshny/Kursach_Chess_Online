@@ -615,11 +615,11 @@ namespace Kursach2
             if (color) {
                 defarr = blackfig;
                 arr = whitefig;
-                kingtype = 4;
+                kingtype = 10;
             } else {
                 defarr = whitefig;
                 arr = blackfig;
-                kingtype = 10;
+                kingtype = 4;
             }
             int kingpos = -1;
             foreach (Figure item in list)
