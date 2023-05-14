@@ -300,6 +300,8 @@ namespace Kursach2
             whiterotateRF = Convert.ToBoolean(data[8]);
             blackrotateLF = Convert.ToBoolean(data[9]);
             blackrotateRF = Convert.ToBoolean(data[10]);
+            if (checktoBlack) { showcheckwindow_b = true; }
+            if (checktoWhite) { showcheckwindow_w = true; }
             int j = 10;
             for (int i = 0; i < 64; i++)
             {
