@@ -60,7 +60,6 @@ namespace Kursach2.Client
                 {
                     ConnectionToUser = true;
                 }
-                else return;
             }
         }
 
