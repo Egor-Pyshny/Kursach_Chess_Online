@@ -91,8 +91,9 @@ namespace Kursach2
                     if (count != 0 && data[0] == 253)
                     {
                         byte id = client.user_ip();
+                        client.User().GetStream().Write(new byte[] { 4 }, 0, 1);
                         client.User().GetStream().Write(new byte[] { 253, id }, 0, 2);
-                        client.User().GetStream().Write(new byte[] { 5 }, 0, 1);
+                        
                         /*client.User().Close();*/
                         window.Close();
                         Array.Clear(data, 0, data.Length);
@@ -879,7 +880,7 @@ namespace Kursach2
             {
                 byte id = client.user_ip();
                 client.User().GetStream().Write(new byte[] { 253, id }, 0, 2);
-                client.User().GetStream().Write(new byte[1] { 5 }, 0, 1);               
+                client.User().GetStream().Write(new byte[1] { 4 }, 0, 1);               
             }
             Console.WriteLine("kek");
             window.Close();
