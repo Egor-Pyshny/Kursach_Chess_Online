@@ -26,7 +26,7 @@ namespace Kursach2.Client
             {
                 try
                 {
-                    client.Connect(IPAddress.Parse("192.168.0.104"), 8001);
+                    client.Connect(IPAddress.Parse("192.168.0.102"), 8001);
                     ConnectionToServer = true;
                     client.GetStream().Write(new byte[] { 0 }, 0, 1);
                     byte[] temp = new byte[1];

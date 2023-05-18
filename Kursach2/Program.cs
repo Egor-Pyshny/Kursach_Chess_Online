@@ -877,6 +877,7 @@ namespace Kursach2
             if (online)
             {
                 byte id = client.user_ip();
+                client.User().GetStream().Write(new byte[1] { 4 }, 0, 1);
                 client.User().GetStream().Write(new byte[] { 253, id }, 0, 2);
             }
             Console.WriteLine("kek");
