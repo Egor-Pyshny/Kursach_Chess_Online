@@ -160,7 +160,7 @@ namespace Kursach2
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
                 0,0,0,0,0,0,0,0,
-                12,6,6,6,6,6,6,6,
+                6,6,6,6,6,6,6,6,
                 1,2,3,4,5,3,2,1,
             };
             f = new Figure();
@@ -830,7 +830,7 @@ namespace Kursach2
             bool color = true;
             float x = 50, y = 100, step = 100;
             //white = true black = false
-            for (int i = 1; i <= 64; i++) {
+            for (int i = 1; i <= 64; i++) {               
                 if (pressedbrik == i-1)
                 {
                     Color c = new Color(17, 120, 61, 150);
@@ -855,6 +855,7 @@ namespace Kursach2
                         }
                     }
                 }
+
                 brik.OutlineThickness = 2;
                 brik.OutlineColor = Color.Black;               
                 brik.Position = new Vector2f(x, y);

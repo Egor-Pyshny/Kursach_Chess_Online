@@ -41,6 +41,7 @@ namespace Kursach2.Figures
             int tmp = 0;
             if ((ind2 - ind) % 8 == 0)
             {
+                tmp = (ind2 < ind) ? (-8) : (8);
                 if (ind2 < ind) { tmp = -8; } else { tmp = 8; }
             }
             if (yo == yn)
